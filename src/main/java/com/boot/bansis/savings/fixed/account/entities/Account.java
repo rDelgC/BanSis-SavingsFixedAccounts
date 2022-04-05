@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+public abstract class Account {
 
     @Id
     private String id;

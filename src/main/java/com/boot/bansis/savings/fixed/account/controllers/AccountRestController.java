@@ -1,5 +1,6 @@
 package com.boot.bansis.savings.fixed.account.controllers;
 
+import com.boot.bansis.savings.fixed.account.dto.SavingsAccountDto;
 import com.boot.bansis.savings.fixed.account.entities.FixedTermAccount;
 import com.boot.bansis.savings.fixed.account.entities.SavingsAccount;
 import com.boot.bansis.savings.fixed.account.services.FixedTermAccountService;
@@ -42,13 +43,13 @@ public class AccountRestController {
     }
 
     @PostMapping("/savings/save")
-    public Mono<SavingsAccount> saveSavings(@RequestBody SavingsAccount savingsAccount) {
-        return savingsAccountService.save(savingsAccount);
+    public Mono<SavingsAccountDto> saveSavings(@RequestBody Mono<SavingsAccountDto> savingsAccountDtoMono) {
+        return savingsAccountService.save(savingsAccountDtoMono);
     }
 
     @PutMapping("/savings/update/{id}")
-    public Mono<SavingsAccount> updateSavings(@RequestBody SavingsAccount savingsAccount, @PathVariable String id) {
-        return savingsAccountService.update(savingsAccount, id);
+    public Mono<SavingsAccount> updateSavings(@RequestBody Mono<SavingsAccount> savingsAccountMono, @PathVariable String id) {
+        return savingsAccountService.update(savingsAccountMono, id);
     }
 
     @DeleteMapping("/savings/delete/{id}")
@@ -68,13 +69,13 @@ public class AccountRestController {
     }
 
     @PostMapping("/fixed-term/save")
-    public Mono<FixedTermAccount> saveFixedTerm(@RequestBody FixedTermAccount fixedTermAccount) {
-        return fixedTermAccountService.save(fixedTermAccount);
+    public Mono<FixedTermAccount> saveFixedTerm(@RequestBody Mono<FixedTermAccount> fixedTermAccountMono) {
+        return fixedTermAccountService.save(fixedTermAccountMono);
     }
 
     @PutMapping("/fixed-term/update/{id}")
-    public Mono<FixedTermAccount> updateFixedTerm(@RequestBody FixedTermAccount fixedTermAccount, @PathVariable String id) {
-        return fixedTermAccountService.update(fixedTermAccount, id);
+    public Mono<FixedTermAccount> updateFixedTerm(@RequestBody Mono<FixedTermAccount> fixedTermAccountMono, @PathVariable String id) {
+        return fixedTermAccountService.update(fixedTermAccountMono, id);
     }
 
     @DeleteMapping("/fixed-term/delete/{id}")

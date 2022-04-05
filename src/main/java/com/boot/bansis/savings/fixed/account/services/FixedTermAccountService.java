@@ -16,9 +16,10 @@ public interface FixedTermAccountService {
 
     public Mono<FixedTermAccount> findById(String id);
 
-    public Mono<FixedTermAccount> save(FixedTermAccount fixedTermAccount);
+    public Mono<FixedTermAccount> save(Mono<FixedTermAccount> fixedTermAccount);
 
-    public Mono<FixedTermAccount> update(FixedTermAccount fixedTermAccount, String id);
+    public Mono<FixedTermAccount> update(Mono<FixedTermAccount> fixedTermAccount, String id);
 
     public Mono<Void> deleteById(String id);
+
 }

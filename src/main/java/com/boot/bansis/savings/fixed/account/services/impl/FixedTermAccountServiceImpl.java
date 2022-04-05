@@ -29,13 +29,17 @@ public class FixedTermAccountServiceImpl implements FixedTermAccountService {
     }
 
     @Override
-    public Mono<FixedTermAccount> save(FixedTermAccount fixedTermAccount) {
-        return fixedTermAccountDao.save(fixedTermAccount);
+    public Mono<FixedTermAccount> save(Mono<FixedTermAccount> fixedTermAccountMono) {
+        return fixedTermAccountMono.flatMap(fixedTermAccountDao::insert);
     }
 
     @Override
-    public Mono<FixedTermAccount> update(FixedTermAccount fixedTermAccount, String id) {
-        return null;
+    public Mono<FixedTermAccount> update(Mono<FixedTermAccount> fixedTermAccountMono, String id) {
+        return fixedTermAccountDao.findById(id)
+                .flatMap(p -> fixedTermAccountMono
+                        .doOnNext(e -> e.setId(id))
+                        .doOnNext(e -> e.setCreatedAt(p.getCreatedAt())))
+                .flatMap(fixedTermAccountDao::save);
     }
 
     @Override

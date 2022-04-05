@@ -1,5 +1,6 @@
 package com.boot.bansis.savings.fixed.account.services;
 
+import com.boot.bansis.savings.fixed.account.dto.SavingsAccountDto;
 import com.boot.bansis.savings.fixed.account.entities.SavingsAccount;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,9 +15,10 @@ public interface SavingsAccountService {
 
     public Mono<SavingsAccount> findById(String id);
 
-    public Mono<SavingsAccount> save(SavingsAccount savingsAccount);
+    public Mono<SavingsAccountDto> save(Mono<SavingsAccountDto> savingsAccountDtoMono);
 
-    public Mono<SavingsAccount> update(SavingsAccount savingsAccount, String id);
+    public Mono<SavingsAccount> update(Mono<SavingsAccount> savingsAccount, String id);
 
     public Mono<Void> deleteById(String id);
+
 }
